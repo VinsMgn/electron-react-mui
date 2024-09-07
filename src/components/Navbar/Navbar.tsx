@@ -10,27 +10,13 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import React from "react";
 import { mainNavbarItems } from "./NavbarItem";
+import { navbarStyles } from "./style";
 
 export const Navbar = () => {
-  const drawerWidth = 240;
   const navigate = useNavigate();
   return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          backgroundColor: "#101F33",
-          color: "rgba(255, 255, 255, 0.7)",
-          width: drawerWidth,
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
+    <Drawer sx={navbarStyles.drawer} variant="permanent" anchor="left">
       <Toolbar />
       <Divider />
       <List>
@@ -41,10 +27,8 @@ export const Navbar = () => {
             onClick={() => navigate(item.route)}
           >
             <ListItemButton>
-              <ListItemIcon sx={{ color: "rgba(255, 255, 255, 0.7)" }}>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
+              <ListItemIcon sx={navbarStyles.icons}>{item.icon}</ListItemIcon>
+              <ListItemText sx={navbarStyles.text} primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}

@@ -34,7 +34,7 @@ export const NotificationBell = ({ iconColor }) => {
       >
         <IconButton
           onClick={notifcations.length ? handleOpen : () => {}}
-          color={iconColor}
+          color={"primary"}
         >
           <Badge badgeContent={notifcations.length} color="primary">
             <NotificationIcon />

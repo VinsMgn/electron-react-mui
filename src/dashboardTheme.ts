@@ -34,13 +34,13 @@ export const dashboardTheme = createTheme({
     },
   },
   palette: {
-    common: {
-      white: "#fff",
+    primary: {
+      main: "#fff",
     },
   },
   typography: {
     h1: {
-      fontSize: "2.6rem",
+      fontSize: "1.6rem",
       fontWeight: 600,
       color: "#fff",
       letterSpacing: "0.5px",

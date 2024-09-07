@@ -1,5 +1,13 @@
-import Grid from "@mui/material/Grid2";
+import { BasicCard } from "../../components/BasicCard/BasicCard";
+import { useAuthentication } from "./useAuthentication.hook";
+import { GridWrapper } from "../../components/GridWrapper/GridWrapper";
 
 export const Authentication = () => {
-  return <Grid></Grid>;
+  const { getHeader, getContent } = useAuthentication();
+
+  return (
+    <GridWrapper>
+      <BasicCard content={getContent()} header={getHeader()} />
+    </GridWrapper>
+  );
 };
