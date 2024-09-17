@@ -1,15 +1,18 @@
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { Box, IconButton, Typography } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { cardHeaderStyles } from "./style";
 import { CommonButton } from "../../components/Button/Button";
 import { useState } from "react";
+import { useCounterStore } from "../../shared/stores/counter.store";
 
 export const useAuthentication = () => {
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [searchResult, setSearchResult] = useState(users);
+  const { count, increment, decrement } = useCounterStore();
 
   const getHeader = () => {
     const handleSearch = (value) => {
@@ -39,6 +42,7 @@ export const useAuthentication = () => {
           searchBarWidth="720px"
         />
         <Box>
+          <Typography>Number of user : {count} </Typography>
           <CommonButton
             variant="contained"
             onClick={addUser}
@@ -61,11 +65,16 @@ export const useAuthentication = () => {
 
   const addNewUser = (data) => {
     users.push({ ...data });
+    increment();
     onClose();
   };
 
+  const deleteUser = (userId: string) => {
+    setUsers(users.filter((user) => user.userId !== userId));
+    decrement();
+  };
+
   const getContent = () => {
-    console.log("content");
     return (
       <>
         {users.length > 0 ? (
@@ -85,6 +94,9 @@ export const useAuthentication = () => {
                   <Typography>{user.email}</Typography>
                   <Typography>{user.phone}</Typography>
                   <Typography>{user.userId}</Typography>
+                  <IconButton onClick={() => deleteUser(user.userId)}>
+                    <DeleteIcon />
+                  </IconButton>
                 </Box>
               );
             })}

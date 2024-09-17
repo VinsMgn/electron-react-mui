@@ -14,8 +14,7 @@ export const useNewUserModal = ({ open, addNewUser }) => {
   };
 
   const [values, setValues] = useState(defaultInputValues);
-  const phoneRegex =
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+  const phoneRegex = /^\+?[()]?\d{3}[()]?[-\s.]?\d{3}[-\s.]?\d{4,6}$/;
   const schema = yup.object().shape({
     email: yup.string().email("Email is invalid").required("Email is required"),
     phone: yup
